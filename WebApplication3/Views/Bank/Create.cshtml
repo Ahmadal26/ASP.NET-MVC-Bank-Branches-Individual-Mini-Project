@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model NewBranchForm
+>
+
+<div class="form-container">
+    <h2>Add New Branch</h2>
+    <form asp-action="Submit" method="post">
+        <div class="form-group">
+            <label asp-for="LocationName">Location Name:</label>
+            
+            <span asp-validation-for="LocationName" class="validation-message"></span>
+            <input type="text" id="LocationName" name="locationName" required placeholder="Add The Branch Name " />
+        </div>
+        <div class="form-group">
+            <label asp-for="LocationURL">Location URL:</label>
+           
+            <span asp-validation-for="LocationURL" class="validation-message"></span>
+            <input type="text" id="LocationURL" name="LocationURL" required placeholder="Add The URL Location" />
+        </div>
+        <div class="form-group">
+            <label asp-for="BranchManager">Branch Manager :</label>
+        
+            <span asp-validation-for="BranchManager" class="validation-message"></span>
+            <input type="text" id="BranchManager" name="BranchManager" required placeholder="Add The Branch Manager Name" />
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeCount">Employee Count:</label>
+            
+            <span asp-validation-for="EmployeeCount" class="validation-message"></span>
+            <input type="text" id="EmployeeCount" name="EmployeeCount" required placeholder="Number of Employees" />
+        </div>
+        <button type="submit" class="submit-button">Add Branch</button>
+    </form>
+</div>
