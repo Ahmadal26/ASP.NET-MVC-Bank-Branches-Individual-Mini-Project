@@ -14,5 +14,37 @@
     <p>Branch Manager: @Model.BranchManager</p>
     <p>Employee Count: @Model.EmployeeCount</p>
     
-  
+
+
 </div>
+
+
+<table class="table">
+    <thead>
+
+        <tr>
+            <th> Name</th>
+            <th>Position</th>
+            <th>CivilId</th>
+            
+
+        </tr>
+    <thead>
+    <tbody>
+
+
+    
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Position</td>
+                <td>@employee.CivilId</td>
+            
+            </tr>
+        }
+
+    
+<div>
+    <a class="btn btn-info" href="/Bank/AddEmployee/@Model.BankId">Add Employee</a>
+</div> 

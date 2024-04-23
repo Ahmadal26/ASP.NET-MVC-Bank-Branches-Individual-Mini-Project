@@ -1,0 +1,8 @@
+﻿@model AddEmployee
+
+<h1>Add Employee</h1>
+@using (Html.BeginForm("AddEmployee", "Bank", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <button type="submit">Add</button>
+}

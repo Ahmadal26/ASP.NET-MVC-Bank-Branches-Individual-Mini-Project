@@ -2,11 +2,9 @@
 
 namespace WebApplication3.Models
 {
-
-
-    public class BankBranch
+    public class EditBankBranch
     {
-        [Key]
+        [Required]
         public int BankId { get; set; }
         [Required]
         public string LocationName { get; set; }
@@ -16,8 +14,5 @@ namespace WebApplication3.Models
         public string BranchManager { get; set; }
         [Required]
         public int EmployeeCount { get; set; }
-        public List<Employee> Employees { get; set; } = new();
     }
 }
-
-

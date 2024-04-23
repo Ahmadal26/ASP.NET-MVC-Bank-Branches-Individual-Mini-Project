@@ -9,7 +9,7 @@
 
 <div class="form-container">
     <h2>Add New Branch</h2>
-    <form asp-action="Submit" method="post">
+    <form asp-action="Create" method="post">
         <div class="form-group">
             <label asp-for="LocationName">Location Name:</label>
             
@@ -34,6 +34,6 @@
             <span asp-validation-for="EmployeeCount" class="validation-message"></span>
             <input type="text" id="EmployeeCount" name="EmployeeCount" required placeholder="Number of Employees" />
         </div>
-        <button type="submit" class="submit-button">Add Branch</button>
+        <button type="Create" class="Create-button">Add Branch</button>
     </form>
 </div>

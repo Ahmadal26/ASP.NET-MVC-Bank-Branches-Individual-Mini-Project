@@ -1,0 +1,8 @@
+﻿@model EditBankBranch
+
+
+@using (Html.BeginForm("Edit", "Bank", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <button type="Edit">Edit</button>
+}
