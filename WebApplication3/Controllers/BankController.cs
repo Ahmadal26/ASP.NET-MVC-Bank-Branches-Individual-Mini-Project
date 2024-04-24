@@ -7,12 +7,24 @@ using WebApplication3.Models;
 public class BankController : Controller
 {
 
+    private readonly BankContext _context;
 
+    public BankController(BankContext context)
+    {
+        _context = context;
+    }
 
     public IActionResult Index()
     {
-        var context = new BankContext();
-        return View(context.BankBranches.ToList());
+       // var context = _context;
+       // return View(context.BankBranches.ToList());
+        var viewModel = new BankDashboardViewModel();
+        viewModel.BranchList = _context.BankBranches.Include(r => r.Employees).ToList();
+        viewModel.TotalBranches = _context.BankBranches.Count();
+        viewModel.TotalEmployees = _context.Employees.Count();
+        viewModel.BranchWithMostEmployees = _context.BankBranches.OrderByDescending(b => b.Employees.Count).FirstOrDefault();
+
+        return View(viewModel);
     }
     [HttpGet]
     public IActionResult Create()
@@ -25,7 +37,7 @@ public class BankController : Controller
 
     {
 
-        using (var context = new BankContext())
+        using (var context =  _context)
         {
 
             var LocationName = from["LocationName"];
@@ -56,7 +68,7 @@ public class BankController : Controller
 
     public IActionResult Details(int id)
     {
-        using (var context = new BankContext())
+        using (var context = _context)
         {
 
             var branch = context.BankBranches.Include(e => e.Employees).FirstOrDefault(b => b.BankId == id);
@@ -72,7 +84,7 @@ public class BankController : Controller
     public IActionResult Edit(int id)
     {
         var form = new EditBankBranch();
-        var context = new BankContext();
+        var context = _context;
         var banks = context.BankBranches.SingleOrDefault(a => a.BankId == id);
         if (banks == null)
         {
@@ -92,7 +104,7 @@ public class BankController : Controller
 
     {
 
-        using (var context = new BankContext())
+        using (var context = _context )
         {
             var bankId = form.BankId;
             var LocationName = form.LocationName;
@@ -128,7 +140,7 @@ public class BankController : Controller
     }
     public IActionResult Search(string searchTerm)
     {
-        using (var context = new BankContext())
+        using (var context = _context)
         {
             var branches = context.BankBranches.AsQueryable();
 
@@ -154,7 +166,7 @@ public class BankController : Controller
         {
             try
             {
-                var context = new BankContext();
+                var context = _context;
 
                 var name = form.Name;
                 var civilId = form.CivilId;

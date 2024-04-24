@@ -1,45 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model List<BankBranch>
-<h1>Bank Branches</h1>
-<form method="get" action="@Url.Action("search","Bank")">
+﻿@model BankDashboardViewModel
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Type here to search for a barnch" name="searchTerm" />
-        <button class="btn btn-outline-secondary" type="sumbit">Search</button>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Branches</h5>
+                <p class="card-text">@Model.TotalBranches</p>
+            </div>
+        </div>
     </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Employee</h5>
+                <p class="card-text">@Model.TotalEmployees</p>
+            </div>
+        </div>
 
+    </div>
+</div>
+
+<h1>Bank Branches</h1>
+
+<form method="get" action="@Url.Action("search","Bank")">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Type here to search for a branch" name="searchTerm" />
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
 </form>
+
 <table class="table">
     <thead>
-
-    <tr>
-        <th>Location Name</th>
-        <th>Location URL</th>
-        <th>Branch Manager</th>
-        <th>Employee Count</th>
-        <th>Bank ID</th>
-      
-    </tr>
-    <thead>
-    <tbody>
-    @foreach (var branch in Model)
-    {
         <tr>
-        <td><a href="/Bank/Details/@branch.BankId">@branch.LocationName</a></td>
-        <td><a href="@branch.LocationURL" target="_blank">Google Maps</a></td>
-        <td>@branch.BranchManager</td>
-        <td>@branch.EmployeeCount</td>
-        <td>@branch.BankId</td>
-
+            <th>Location Name</th>
+            <th>Location URL</th>
+            <th>Branch Manager</th>
+            <th>Employee Count</th>
+            <th>Bank ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var branch in Model.BranchList)
+        {
+            <tr>
+                <td><a href="/Bank/Details/@branch.BankId">@branch.LocationName</a></td>
+                <td><a href="@branch.LocationURL" target="_blank">Google Maps</a></td>
+                <td>@branch.BranchManager</td>
+                <td>@branch.Employees.Count</td>
+                <td>@branch.BankId</td>
                 <td>
                     <a class="btn btn-info" href="Bank/Edit/@branch.BankId">Edit Branch</a>
                 </td>
-        </tr>
-    }
-    <tbody>
+            </tr>
+        }
+    </tbody>
 </table>
+
 <a class="btn btn-info" href="Bank/Create">Add Branch</a>
+

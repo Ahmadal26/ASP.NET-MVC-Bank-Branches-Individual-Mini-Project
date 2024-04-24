@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using WebApplication3.Models;
 
 namespace WebApplication3.Models
@@ -24,10 +25,10 @@ namespace WebApplication3.Models
 
             base.OnModelCreating(modelBuilder);
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public BankContext(DbContextOptions<BankContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite("Data Source=asb.db");
-        }
 
+        }
     }
+
 }
