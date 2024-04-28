@@ -23,6 +23,18 @@ namespace WebApplication3.Controllers
             return View();
         }
 
+
+        public IActionResult BankBranch()
+        {
+            return View();
+        }
+
+        public IActionResult NewBranchForm()
+        {
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
